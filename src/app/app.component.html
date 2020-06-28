@@ -1,4 +1,15 @@
-<app-tab-group>
+<h1>Controlled tabs</h1>
+
+<label>
+  Block Tab Switching
+  <input
+    type="checkbox"
+    [checked]="isBlocked"
+    (change)="isBlocked = !isBlocked"
+  >
+</label>
+
+<app-tab-group (canTabActivate)="_onCanTabActivate($event)">
   <app-tab label="Animals">
     <ul>
       <li>Bird</li>

@@ -3,10 +3,16 @@ import {
   ContentChildren,
   QueryList,
   TemplateRef,
-  AfterContentInit
+  AfterContentInit,
+  EventEmitter,
+  Output
 } from '@angular/core';
 
 import { TabComponent } from './tab/tab.component';
+
+export interface TabActivateArgs {
+  cancel: boolean;
+}
 
 @Component({
   selector: 'app-tab-group',
@@ -22,12 +28,21 @@ export class TabGroupComponent implements AfterContentInit {
 
   _selectedTab!: TabComponent;
 
+  @Output()
+  canTabActivate = new EventEmitter<TabActivateArgs>();
+
   ngAfterContentInit(): void {
     this._setTab(this.tabComponents.first);
   }
 
   _onSelectTab(tab: TabComponent): void {
-    this._setTab(tab);
+    const activateArgs = { cancel: false };
+
+    this.canTabActivate.emit(activateArgs);
+
+    if (!activateArgs.cancel) {
+      this._setTab(tab);
+    }
   }
 
   private _setTab(tab: TabComponent): void {
