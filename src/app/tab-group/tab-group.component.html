@@ -1,0 +1,14 @@
+<div class="tab-container">
+  <span
+    *ngFor="let tab of tabComponents"
+    (click)="_onSelectTab(tab)"
+    [ngClass]="{'tab--selected': tab === _selectedTab }"
+    class="tab"
+  >
+    {{ tab.label }}
+  </span>
+</div>
+
+<div class="tab-content">
+  <ng-container *ngTemplateOutlet="_selectedTabTemplateRef"></ng-container>
+</div>

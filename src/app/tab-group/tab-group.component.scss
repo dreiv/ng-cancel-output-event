@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.tab {
+  display: inline-block;
+  border: 1px solid grey;
+  background-color: #d4d4d4;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.tab:first-child {
+  border-top-left-radius: 4px;
+}
+
+.tab--selected {
+  background-color: rgb(81, 44, 214);
+  color: white;
+}
+
+.tab-content {
+  border-top: 1px solid grey;
+}
